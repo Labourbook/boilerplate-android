@@ -35,7 +35,7 @@ publishing {
         bar(MavenPublication) {
             groupId "com.boilerplate"
             artifactId "network"
-            version "0.0.1-alpha"
+            version "0.0.1-alpha-5"
             artifact("$buildDir/outputs/aar/network-release.aar")
         }
     }
@@ -45,8 +45,8 @@ publishing {
             name "GithubPackages"
             url uri("https://maven.pkg.github.com/Labourbook/boilerplate-android")
             credentials {
-                username = System.getenv("GITHUB_USER")
-                password = System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+                password = project.findProperty("gpr.key") ?:System.getenv("GITHUB_TOKEN")
             }
         }
     }
