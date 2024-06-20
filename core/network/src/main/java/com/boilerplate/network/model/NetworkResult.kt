@@ -1,4 +1,4 @@
-package com.boilerplate.network.status
+package com.boilerplate.network.model
 
 enum class NetworkResultStatus {
     SUCCESS,
