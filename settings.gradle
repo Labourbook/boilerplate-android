@@ -22,6 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "BoilerplateAndroid"
 include ':app'
 include ':uikit'
-include ':core:network'
 include ':navigator'
 include ':network'
