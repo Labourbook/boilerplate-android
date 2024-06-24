@@ -35,7 +35,7 @@ publishing {
         bar(MavenPublication) {
             groupId "com.boilerplate"
             artifactId "uikit"
-            version "0.0.1-alpha-6"
+            version "0.0.1-alpha-7"
             artifact("$buildDir/outputs/aar/uikit-release.aar")
         }
     }

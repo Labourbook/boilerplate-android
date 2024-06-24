@@ -4,6 +4,32 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 
+
+// Extension function to zoom out and hide the view
+fun View.invisible(duration: Long = 300) {
+    if (this.visibility == View.VISIBLE) {
+        val scaleAnimation = ScaleAnimation(
+            1f, 0f, // Start and end values for the X axis scaling
+            1f, 0f, // Start and end values for the Y axis scaling
+            Animation.RELATIVE_TO_SELF, 0.5f, // Pivot point of X scaling
+            Animation.RELATIVE_TO_SELF, 0.5f // Pivot point of Y scaling
+        ).apply {
+            fillAfter = true // Needed to keep the result of the animation
+            this.duration = duration
+            setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation) {}
+
+                override fun onAnimationEnd(animation: Animation) {
+                    this@invisible.visibility = View.INVISIBLE
+                }
+
+                override fun onAnimationRepeat(animation: Animation) {}
+            })
+        }
+        this.startAnimation(scaleAnimation)
+    }
+}
+
 // Extension function to zoom out and hide the view
 fun View.hide(duration: Long = 300) {
     if (this.visibility == View.VISIBLE) {
