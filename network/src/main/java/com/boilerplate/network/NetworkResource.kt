@@ -1,9 +1,11 @@
 package com.boilerplate.network
 
 
+import com.boilerplate.network.auth.data.repository.AuthRepositoryImpl
 import com.boilerplate.network.model.DataResponse
 import com.boilerplate.network.model.NetworkResult
 import com.boilerplate.network.model.NetworkResultStatus
+import com.boilerplate.network.utils.NetworkConstants
 import com.boilerplate.network.utils.NetworkUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -39,6 +41,8 @@ class NetworkResource<out Output>(
     init {
         refreshControl.addListener(this)
     }
+
+    private var isAccessTokenAPICalled = false
 
 
     suspend fun query(force: Boolean = false): Flow<NetworkResult<Output?>> = flow {
@@ -163,9 +167,14 @@ class NetworkResource<out Output>(
      * @param response from network call
      * @return output with Result wrapper class
      */
-    private fun getDataFromResponse(response: Response<DataResponse<Output>>?): NetworkResult<Output?> {
+    private suspend fun getDataFromResponse(response: Response<DataResponse<Output>>?): NetworkResult<Output?> {
         if (response?.isSuccessful == true) {
             return NetworkResult.success(response.body()?.data, response.code(), true)
+        }
+        else if(response?.code() == 401 && !isAccessTokenAPICalled){
+            if(generateAccessToken()){
+                return fetchFromRemote()
+            }
         }
         var errorMessage = response?.errorBody()?.string()
         if (response?.errorBody() != null) {
@@ -177,7 +186,25 @@ class NetworkResource<out Output>(
         return NetworkResult.error(localData, errorMessage, response?.code())
     }
 
-    suspend fun queryWithoutFlow() : NetworkResult<Output?> {
+    suspend fun queryWithoutFlow() : NetworkResult<Output?>{
         return fetchFromRemote()
+    }
+
+    private suspend fun generateAccessToken() : Boolean{
+        val networkHandler = NetworkHandler.getInstance()
+
+        val baseUrl = if(networkHandler.isDebug()) NetworkConstants.BASE_URL_DEBUG else NetworkConstants.BASE_URL
+        val defaultAuthenticationCallback = networkHandler.getDefaultAuthCallback()
+        val refreshToken = networkHandler.getRefreshToken() ?: ""
+
+        val res = AuthRepositoryImpl().generateAccessToken(baseUrl, hashMapOf(NetworkConstants.REFRESH_TOKEN to refreshToken))
+        if(res.status == NetworkResultStatus.SUCCESS){
+            networkHandler.setAccessToken(res.data?.token?.accessToken ?: "")
+            kotlin.runCatching {  defaultAuthenticationCallback?.onNewAccessTokenGenerated(res.data?.token?.accessToken, res.data?.token?.refreshToken, res.data?.token?.refreshExpiresIn) }
+            return true
+        }else{
+            kotlin.runCatching {  defaultAuthenticationCallback?.onRefreshTokenFailed() }
+            return false
+        }
     }
 }

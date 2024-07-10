@@ -1,9 +1,11 @@
 package com.boilerplate.network
 
+import com.boilerplate.network.auth.callback.DefaultAuthenticationCallback
 import com.boilerplate.network.model.APIHeaders
 import com.boilerplate.network.model.DataResponse
 import com.boilerplate.network.model.NetworkResult
 import com.boilerplate.network.utils.CurlLoggerInterceptor
+import com.boilerplate.network.utils.NetworkConstants
 import com.boilerplate.network.utils.NetworkHandlerException
 import kotlinx.coroutines.flow.Flow
 import okhttp3.OkHttpClient
@@ -20,6 +22,9 @@ import kotlin.jvm.Throws
     private lateinit var headers: APIHeaders
 
     private var isDebug = false
+
+     private var refreshToken  : String? = null
+     private var defaultAuthenticationCallback : DefaultAuthenticationCallback? = null
 
 
     @Throws(NetworkHandlerException::class)
@@ -124,6 +129,18 @@ import kotlin.jvm.Throws
         return res
     }
 
+     inline fun <reified ApiInterface> getDefaultApiClient(): ApiInterface {
+         val baseUrl = if(isDebug()) NetworkConstants.BASE_URL_DEBUG else NetworkConstants. BASE_URL
+         val res = Retrofit.Builder()
+             .baseUrl(baseUrl)
+             .client(getOkHttpClient())
+             .addConverterFactory(GsonConverterFactory.create())
+             .build()
+             .create(ApiInterface::class.java)
+
+         return res
+     }
+
      fun getOkHttpClient(): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         if (isDebug) {
@@ -161,6 +178,10 @@ import kotlin.jvm.Throws
                     .header("x-afb-ipv6", headers.ipv6)
                     .method(original.method, original.body)
 
+                for(key in headers.additionalHeaders.keys){
+                    requestBuilder.header(key, headers.additionalHeaders[key] ?: "")
+                }
+
                 //todo : create pref module
 //                if(prefsInstance.getBoolean(Prefs.IS_NEW_USER)){
 //                    requestBuilder.header("X-AFB-IS-NEW-USER", prefsInstance.getBoolean(Prefs.IS_NEW_USER).toString())
@@ -169,6 +190,7 @@ import kotlin.jvm.Throws
                 chain.proceed(request)
             }
             .addInterceptor(httpLoggingInterceptor)
+//            .addNetworkInterceptor(StethoInterceptor())
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -194,8 +216,26 @@ import kotlin.jvm.Throws
     private fun checkIfInitialized(){
         if(networkHandler == null)
             throw NetworkHandlerException("Network Handler not initialized")
-
     }
 
     fun getHeaders() = headers
+
+     fun addAuthentication(refreshToken : String, defaultAuthenticationCallback: DefaultAuthenticationCallback){
+         this.refreshToken = refreshToken
+         this.defaultAuthenticationCallback = defaultAuthenticationCallback
+     }
+
+     fun setRefreshToken(refreshToken: String){
+         this.refreshToken = refreshToken
+     }
+
+     fun isDebug() = isDebug
+
+     internal fun getDefaultAuthCallback() = defaultAuthenticationCallback
+
+     internal fun getRefreshToken() = refreshToken
+
+     fun setAdditionalHeaders(additionHeaders : HashMap<String, String>){
+         headers.additionalHeaders = additionHeaders
+     }
 }

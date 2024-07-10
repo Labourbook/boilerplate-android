@@ -20,4 +20,5 @@ data class APIHeaders(
     var ipv4: String = "",
     var ipv6: String = "",
     var isNewUser: Boolean = false,
+    var additionalHeaders : HashMap<String, String> = hashMapOf()
 )
