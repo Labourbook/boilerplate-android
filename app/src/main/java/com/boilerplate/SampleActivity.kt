@@ -16,16 +16,9 @@ class SampleActivity : AppCompatActivity() {
         networkHandler.initialize(
             deviceId = "your-device-id",
             systemId = "your-system-id",
-            appVersion = "your-app-version",
-            isUserLoggedIn = true,
-            acceptLanguage = "en-US",
-            languageMode = "en",
-            deviceSegment = "your-device-segment",
-            countryCode = "US",
-            timeZone = "America/New_York",
-            osVersion = "your-os-version"
+            appVersion = "your-app-version"
         )
 
-        val apiService: YourApiService = networkHandler.getApiClient("https://api.yourservice.com/")
+        val apiService: YourApiService = networkHandler.getApiClient<YourApiService>("https://api.yourservice.com/")
     }
 }

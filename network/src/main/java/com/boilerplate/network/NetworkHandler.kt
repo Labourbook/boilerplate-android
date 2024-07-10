@@ -31,17 +31,10 @@ import kotlin.jvm.Throws
     fun initialize(
         deviceId: String,
         systemId: String,
-        appVersion: String,
-        isUserLoggedIn: Boolean,
-        acceptLanguage: String,
-        languageMode: String,
-        deviceSegment: String,
-        countryCode: String,
-        timeZone: String,
-        osVersion: String,
+        appVersion: String
     ) {
         if (networkHandler != null)
-            headers = APIHeaders(deviceId, systemId, appVersion, isUserLoggedIn, acceptLanguage, languageMode, deviceSegment, countryCode, timeZone, osVersion)
+            headers = APIHeaders(deviceId, systemId, appVersion)
         else
             throw NetworkHandlerException("Already Initialized")
     }
@@ -56,38 +49,6 @@ import kotlin.jvm.Throws
     fun setUserId(userId: String) {
         checkIfInitialized()
         headers.userId = userId
-    }
-
-    @Throws(NetworkHandlerException::class)
-    fun setInternetSpeedDetails(internetSpeed: String, internetTier: String) {
-        checkIfInitialized()
-        headers.internetSpeed = internetSpeed
-        headers.internetTier = internetTier
-    }
-
-    @Throws(NetworkHandlerException::class)
-    fun setDevicePerformanceClass(perfClass: String) {
-        checkIfInitialized()
-        headers.performanceClass = perfClass
-    }
-
-    @Throws(NetworkHandlerException::class)
-    fun setScreenDensity(screenDensity: String) {
-        checkIfInitialized()
-        headers.screenDensity = screenDensity
-    }
-
-    @Throws(NetworkHandlerException::class)
-    fun setIpAddress(ipv4: String = "", ipv6: String = "") {
-        checkIfInitialized()
-        headers.ipv4 = ipv4
-        headers.ipv6 = ipv6
-    }
-
-    @Throws(NetworkHandlerException::class)
-    fun setIfNewUser(isNewUser: Boolean) {
-        checkIfInitialized()
-        headers.isNewUser = isNewUser
     }
 
     @Throws(NetworkHandlerException::class)
@@ -158,24 +119,7 @@ import kotlin.jvm.Throws
                     .header("Device-ID", headers.deviceId)
                     .header("App-Version", headers.appVersion)
                     .header("App-Type", "Android")
-                    .header("X-AFB-APP-VER", headers.appVersion)
-                    .header("X-AFB-R-UID", headers.userId)
-                    .header("X-AFB-R-LOGGEDIN", headers.isUserLoggedIn.toString())
-                    .header("X-AFB-PLATFORM", "android")
-                    .header("X-AFB-DEVICE-ID", headers.deviceId)
-                    .header("Accept-Language", headers.acceptLanguage)
-                    .header("x-afb-language-mode", headers.languageMode)
-                    .header("X-AFB-INTERNET-TIER", headers.internetTier)
-                    .header("X-AFB-INTERNET-SPEED", headers.internetSpeed)
-                    .header("x-afb-system-id", headers.systemId)
-                    .header("X-AFB-DEVICE-PERFORMANCE-CLASS", headers.performanceClass)
-                    .header("X-AFB-COUNTRY-CODE", headers.countryCode)
-                    .header("X-AFB-TZ", headers.timeZone)
-                    .header("x-afb-screen-density", headers.screenDensity)
-                    .header("x-afb-device-segment", headers.deviceSegment)
-                    .header("x-afb-os-version", headers.osVersion)
-                    .header("x-afb-ipv4", headers.ipv4)
-                    .header("x-afb-ipv6", headers.ipv6)
+                    .header("User-ID", headers.userId)
                     .method(original.method, original.body)
 
                 for(key in headers.additionalHeaders.keys){
