@@ -26,6 +26,16 @@ class NetworkResource<out Output>(
 
     private var localData: Output? = null
 
+    private var isCallingGenerateAccessToken = false
+
+    internal constructor(
+        remoteFetch: suspend () -> Response<DataResponse<Output>>?,
+        refreshControl: RefreshControl = RefreshControl(),
+        isCallingGenerateAccessToken : Boolean = false
+    ) : this(remoteFetch, refreshControl){
+        this.isCallingGenerateAccessToken = isCallingGenerateAccessToken
+    }
+
     constructor(
         remoteFetch: suspend () -> Response<DataResponse<Output>>?,
         localFetch: suspend () -> List<Output>?,
@@ -46,6 +56,7 @@ class NetworkResource<out Output>(
 
 
     suspend fun query(force: Boolean = false): Flow<NetworkResult<Output?>> = flow {
+        emit(NetworkResult.loading(null))
         /**
          * if force is false local data is retrieved first
          */
