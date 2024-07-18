@@ -29,6 +29,7 @@
         <item name="text10Color">@color/text_10_color</item>
         <item name="otpTextColor">@color/otp_text_color</item>
         <item name="hintTextColor">@color/hint_text_color</item>
+        <item name="errorTextColor">@color/error_state_color</item>
 
         <item name="bottomSheetDialogTheme">@style/TransparentBottomSheetDialogTheme</item>
     </style>
