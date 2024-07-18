@@ -14,6 +14,6 @@ class TextViewBoldYellow24 : AppCompatTextView {
     constructor(context: Context) : super(context)
 
     init {
-        setTextAppearance(R.style.textview_bold_white_24)
+        setTextAppearance(R.style.textview_bold_yellow_24)
     }
 }
