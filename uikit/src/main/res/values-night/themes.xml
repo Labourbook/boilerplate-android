@@ -124,6 +124,10 @@
         <item name="android:fontFamily">@font/roboto_regular</item>
     </style>
 
+    <style name="textview_regular_primary_color_14" parent="textview_14">
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
     <style name="textview_bold_14" parent="textview_14">
         <item name="android:fontFamily">@font/roboto_bold</item>
     </style>

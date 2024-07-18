@@ -14,6 +14,6 @@ class TextViewRegularPrimaryColor14 : AppCompatTextView {
     constructor(context: Context) : super(context)
 
     init {
-        setTextAppearance(R.style.textview_bold_primary_color_24)
+        setTextAppearance(R.style.textview_regular_primary_color_14)
     }
 }
