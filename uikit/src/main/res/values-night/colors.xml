@@ -12,6 +12,7 @@
     <color name="divider_color">#ededed</color>
     <color name="initial_bg_color">#ffe8d3</color>
     <color name="transparent_black_66">#66000000</color>
+    <color name="yellow">#faff13</color>
 
     <color name="present">#38A775</color>
     <color name="absent">#D60F0F</color>
