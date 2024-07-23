@@ -19,7 +19,7 @@ class RoundedPrimaryButton : ActionButton {
         isAllCaps = false
         elevation = 0f
         stateListAnimator = null
-        cornerRadius = Utils.dpToPx(36f,context)
+        cornerRadius = Utils.dpToPx(100f,context)
         insetBottom = 0
         insetTop = 0
         typeface = Utils.getFont(context,R.font.roboto_bold)
