@@ -51,11 +51,11 @@
     </style>
 
     <style name="textview_regular_20" parent="textview_20">
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="textview_bold_20" parent="textview_20">
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
     <style name="textview_bold_primary_color_20" parent="textview_bold_20">
@@ -93,11 +93,15 @@
     </style>
 
     <style name="textview_regular_18" parent="textview_18">
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="textview_bold_18" parent="textview_18">
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+    </style>
+
+    <style name="textview_bold_primary_color_18" parent="textview_regular_18">
+        <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
     <!--  Text 16  -->
@@ -107,11 +111,11 @@
     </style>
 
     <style name="textview_regular_16" parent="textview_16">
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="textview_bold_16" parent="textview_16">
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
     <!--  Text 14  -->
@@ -121,7 +125,7 @@
     </style>
 
     <style name="textview_regular_14" parent="textview_14">
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="textview_regular_primary_color_14" parent="textview_14">
@@ -129,7 +133,7 @@
     </style>
 
     <style name="textview_bold_14" parent="textview_14">
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
     <!--  Text 12  -->
@@ -139,7 +143,7 @@
     </style>
 
     <style name="textview_regular_12" parent="textview_12">
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="textview_regular_white_12" parent="textview_12">
@@ -147,7 +151,7 @@
     </style>
 
     <style name="textview_bold_12" parent="textview_12">
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
     <!--  Text 10  -->
@@ -157,11 +161,11 @@
     </style>
 
     <style name="textview_regular_10" parent="textview_10">
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="textview_bold_10" parent="textview_10">
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
     <!-- Custom Bottom Sheet Theme -->
