@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -35,7 +35,7 @@ publishing {
         bar(MavenPublication) {
             groupId "com.boilerplate"
             artifactId "uikit"
-            version "0.0.10"
+            version "0.0.11"
             artifact("$buildDir/outputs/aar/uikit-release.aar")
         }
     }

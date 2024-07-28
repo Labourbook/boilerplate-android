@@ -7,6 +7,15 @@ android {
     namespace 'com.boilerplate'
     compileSdk 34
 
+    signingConfigs {
+        release {
+            storeFile file('keystore')
+            storePassword 'boilerplate@123'
+            keyAlias = 'boilerplate'
+            keyPassword 'boilerplate@123'
+        }
+    }
+
     defaultConfig {
         applicationId "com.boilerplate"
         minSdk 24
@@ -19,7 +28,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

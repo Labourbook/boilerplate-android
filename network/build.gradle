@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -35,7 +35,7 @@ publishing {
         bar(MavenPublication) {
             groupId "com.boilerplate"
             artifactId "network"
-            version "0.0.3"
+            version "0.0.4"
             artifact("$buildDir/outputs/aar/network-release.aar")
         }
     }
