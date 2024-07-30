@@ -35,7 +35,7 @@ publishing {
         bar(MavenPublication) {
             groupId "com.boilerplate"
             artifactId "network"
-            version "0.0.4"
+            version "0.0.5"
             artifact("$buildDir/outputs/aar/network-release.aar")
         }
     }
