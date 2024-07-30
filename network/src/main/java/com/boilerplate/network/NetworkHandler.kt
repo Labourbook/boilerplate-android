@@ -117,6 +117,7 @@ import kotlin.jvm.Throws
                 val requestBuilder: Request.Builder = original.newBuilder()
                     .header("Authorization", ("Bearer " + headers.accessToken))
                     .header("Device-ID", headers.deviceId)
+                    .header("System-ID", headers.systemId)
                     .header("App-Version", headers.appVersion)
                     .header("App-Type", "Android")
                     .header("User-ID", headers.userId)
