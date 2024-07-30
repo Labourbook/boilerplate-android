@@ -19,5 +19,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.boilerplate.network.* {*;}
--keepclassmembers class com.boilerplate.network.* {*;}
+-keep public class com.boilerplate.network.** { public *;}
+-keepclassmembers class com.boilerplate.network.** {*;}
