@@ -36,7 +36,7 @@ publishing {
         bar(MavenPublication) {
             groupId "com.boilerplate"
             artifactId "navigator"
-            version "0.0.5"
+            version "0.0.6"
             artifact("$buildDir/outputs/aar/navigator-release.aar")
         }
     }
