@@ -72,7 +72,7 @@ class FragmentManagerController(private val fragmentManager: FragmentManager,
 
         runCatching {
             val animation = AnimationUtils.loadAnimation(view?.context, anim)
-            animation.duration = 500
+            animation.duration = 200
 
             animation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(p0: Animation?) {
