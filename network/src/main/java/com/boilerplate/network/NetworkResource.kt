@@ -85,6 +85,7 @@ class NetworkResource<out Output>(
                         if (!force && data != null && this.status != NetworkResultStatus.ERROR) {
                             this.let { it1 ->
                                 withContext(Dispatchers.IO) {
+                                    cleanup()
                                     it1.data?.let { localStore?.let { it2 -> it2(it) } }
                                 }
                             }
