@@ -136,6 +136,10 @@
         <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
+    <style name="textview_bold_primary_color_14" parent="textview_bold_14">
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
     <!--  Text 12  -->
     <style name="textview_12">
         <item name="android:textSize">@dimen/text_size_12</item>
