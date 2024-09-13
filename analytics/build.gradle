@@ -1,0 +1,67 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.boilerplate.analytics'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+publishing {
+    publications {
+        bar(MavenPublication) {
+            groupId "com.boilerplate"
+            artifactId "analytics"
+            version "0.0.1"
+            artifact("$buildDir/outputs/aar/analytics-release.aar")
+        }
+    }
+
+    repositories {
+        maven {
+            name "GithubPackages"
+            url uri("https://maven.pkg.github.com/Labourbook/boilerplate-android")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+                password = project.findProperty("gpr.key") ?:System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation(libs.clevertap)
+    implementation(libs.mixpanel)
+    implementation(libs.appsflyer)
+    implementation(libs.firebase.analytics)
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}
