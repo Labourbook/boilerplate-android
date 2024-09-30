@@ -162,6 +162,14 @@
         <item name="android:textColor">?attr/errorTextColor</item>
     </style>
 
+    <style name="textview_bold_error_14" parent="textview_bold_14">
+        <item name="android:textColor">@color/absent</item>
+    </style>
+
+    <style name="textview_bold_green_14" parent="textview_bold_14">
+        <item name="android:textColor">@color/present</item>
+    </style>
+
     <!--  Text 12  -->
     <style name="textview_12">
         <item name="android:textSize">@dimen/text_size_12</item>

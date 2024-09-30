@@ -26,6 +26,9 @@
     <color name="button_enabled_bg_color">#D21A3F</color>
     <color name="button_disabled_bg_color">#b8b8b8</color>
 
+    <color name="button_red_color">#c33532</color>
+    <color name="button_green_color">#008548</color>
+
     <color name="button_enabled_text_color">#ffffff</color>
     <color name="button_disabled_text_color">#ffffff</color>
 

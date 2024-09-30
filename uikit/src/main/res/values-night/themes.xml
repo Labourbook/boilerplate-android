@@ -18,6 +18,8 @@
         <item name="buttonEnabledTextColor">@color/button_enabled_text_color</item>
         <item name="buttonDisabledTextColor">@color/button_enabled_text_color</item>
         <item name="buttonProgressColor">@color/progress_bar_color</item>
+        <item name="buttonRedColor">@color/button_red_color</item>
+        <item name="buttonGreenColor">@color/button_green_color</item>
 
         <!--    TextViews    -->
         <item name="text20Color">@color/text_20_color</item>
