@@ -118,6 +118,16 @@
         <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
+    <style name="textview_bold_error_16" parent="textview_16">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/absent</item>
+    </style>
+
+    <style name="textview_bold_green_16" parent="textview_16">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/present</item>
+    </style>
+
     <!--  Text 14  -->
     <style name="textview_14">
         <item name="android:textSize">@dimen/text_size_14</item>
