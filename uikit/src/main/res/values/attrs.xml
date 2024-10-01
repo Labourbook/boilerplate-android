@@ -15,6 +15,7 @@
         <attr name="colorPrimary" format="color"/>
 
         <attr name="text20Color" format="color"/>
+        <attr name="text22Color" format="color"/>
         <attr name="text18Color" format="color"/>
         <attr name="text16Color" format="color"/>
         <attr name="text14Color" format="color"/>

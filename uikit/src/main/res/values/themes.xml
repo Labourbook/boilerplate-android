@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/background</item>
@@ -69,7 +69,24 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/text_size_20</item>
     </style>
+    <!--Text 20-->
 
+    <!--  Text 22  -->
+
+    <style name="textview_22">
+        <item name="android:textSize">@dimen/text_size_22</item>
+        <item name="android:textColor">?attr/text22Color</item>
+    </style>
+
+    <style name="textview_regular_22" parent="textview_22">
+        <item name="android:fontFamily">@font/inter_regular</item>
+    </style>
+
+    <style name="textview_bold_22" parent="textview_22">
+        <item name="android:fontFamily">@font/inter_bold</item>
+    </style>
+
+    <!--  Text 22  -->
     <style name="textview_bold_primary_color_24" parent="textview_bold_20">
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textSize">@dimen/text_size_24</item>
