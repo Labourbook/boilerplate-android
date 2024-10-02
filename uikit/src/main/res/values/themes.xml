@@ -227,6 +227,14 @@
         <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
+    <style name="textview_regular_10_hint" parent="textview_regular_10">
+        <item name="android:textColor">@color/hint_text_color</item>
+    </style>
+
+    <style name="textview_bold_10_hint" parent="textview_bold_10">
+        <item name="android:textColor">@color/hint_text_color</item>
+    </style>
+
     <!-- Custom Bottom Sheet Theme -->
     <style name="TransparentBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/TransparentBottomSheetStyle</item>
